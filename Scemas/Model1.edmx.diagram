@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2ae00c84a105447b98c8543c32656525" Name="Diagram1">
+        <EntityTypeShape EntityType="web_task_managerDBModel.Checklist" Width="1.5" PointX="5.25" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="web_task_managerDBModel.Comment" Width="1.5" PointX="8.25" PointY="23.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="web_task_managerDBModel.Dashboard" Width="1.5" PointX="5.25" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="web_task_managerDBModel.Department" Width="1.5" PointX="0.75" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="web_task_managerDBModel.Meeting" Width="1.5" PointX="8.25" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="web_task_managerDBModel.Notification" Width="1.5" PointX="5.25" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="web_task_managerDBModel.Project" Width="1.5" PointX="6" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="web_task_managerDBModel.Report" Width="1.5" PointX="8.25" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="web_task_managerDBModel.SearchFilter" Width="1.5" PointX="5.25" PointY="25.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="web_task_managerDBModel.Setting" Width="1.5" PointX="5.25" PointY="29" IsExpanded="true" />
+        <EntityTypeShape EntityType="web_task_managerDBModel.Task" Width="1.5" PointX="3" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="web_task_managerDBModel.Task_Assignment" Width="1.5" PointX="11.25" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="web_task_managerDBModel.Task_Member" Width="1.5" PointX="5.25" PointY="35.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="web_task_managerDBModel.TimeTracker" Width="1.5" PointX="8.25" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="web_task_managerDBModel.User" Width="1.5" PointX="3" PointY="19.625" IsExpanded="true" />
+        <AssociationConnector Association="web_task_managerDBModel.FK_Checklist_Task" ManuallyRouted="false" />
+        <AssociationConnector Association="web_task_managerDBModel.FK_Comments_Task" ManuallyRouted="false" />
+        <AssociationConnector Association="web_task_managerDBModel.FK_Comments_User" ManuallyRouted="false" />
+        <AssociationConnector Association="web_task_managerDBModel.FK_Dashboard_User" ManuallyRouted="false" />
+        <AssociationConnector Association="web_task_managerDBModel.FK_Report_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="web_task_managerDBModel.FK_User_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="web_task_managerDBModel.FK_Meeting_Project" ManuallyRouted="false" />
+        <AssociationConnector Association="web_task_managerDBModel.FK_Notifications_Task" ManuallyRouted="false" />
+        <AssociationConnector Association="web_task_managerDBModel.FK_Notifications_User" ManuallyRouted="false" />
+        <AssociationConnector Association="web_task_managerDBModel.FK_Report_Project" ManuallyRouted="false" />
+        <AssociationConnector Association="web_task_managerDBModel.FK_Task_Project" ManuallyRouted="false" />
+        <AssociationConnector Association="web_task_managerDBModel.FK_Report_User" ManuallyRouted="false" />
+        <AssociationConnector Association="web_task_managerDBModel.FK_SearchFilter_User" ManuallyRouted="false" />
+        <AssociationConnector Association="web_task_managerDBModel.FK_Settings_User" ManuallyRouted="false" />
+        <AssociationConnector Association="web_task_managerDBModel.FK_TaskAssignment_Task" ManuallyRouted="false" />
+        <AssociationConnector Association="web_task_managerDBModel.FK_TimeTracker_Task" ManuallyRouted="false" />
+        <AssociationConnector Association="web_task_managerDBModel.FK_TaskAssignment_User" ManuallyRouted="false" />
+        <AssociationConnector Association="web_task_managerDBModel.FK_TaskMembers_User" ManuallyRouted="false" />
+        <AssociationConnector Association="web_task_managerDBModel.FK_TimeTracker_User" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

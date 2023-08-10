@@ -1,0 +1,1310 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="web_task_managerDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Checklist">
+          <Key>
+            <PropertyRef Name="Checklist_ID" />
+          </Key>
+          <Property Name="Checklist_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Item_name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Item_priority" Type="int" />
+          <Property Name="Item_status" Type="nvarchar" MaxLength="255" />
+          <Property Name="Deadline" Type="date" />
+          <Property Name="Comments" Type="nvarchar(max)" />
+          <Property Name="Created_at" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Updated_at" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Task_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Comments">
+          <Key>
+            <PropertyRef Name="Comments_ID" />
+          </Key>
+          <Property Name="Comments_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Task_ID" Type="int" />
+          <Property Name="User_ID" Type="int" />
+          <Property Name="Message" Type="nvarchar(max)" />
+          <Property Name="Created_at" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Updated_at" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Dashboard">
+          <Key>
+            <PropertyRef Name="Dashboard_ID" />
+          </Key>
+          <Property Name="Dashboard_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Task_summary" Type="nvarchar(max)" />
+          <Property Name="Team_summary" Type="nvarchar(max)" />
+          <Property Name="User_summary" Type="nvarchar(max)" />
+          <Property Name="Progress_status" Type="nvarchar(max)" />
+          <Property Name="Project_summary" Type="nvarchar(max)" />
+          <Property Name="User_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="Department_ID" />
+          </Key>
+          <Property Name="Department_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="300" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Members" Type="nvarchar(max)" />
+          <Property Name="Projects" Type="nvarchar(max)" />
+          <Property Name="Clients" Type="nvarchar(max)" />
+          <Property Name="Performance" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Meeting">
+          <Key>
+            <PropertyRef Name="Meeting_ID" />
+          </Key>
+          <Property Name="Meeting_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="300" />
+          <Property Name="Start_Time" Type="datetime" />
+          <Property Name="End_Time" Type="datetime" />
+          <Property Name="Users" Type="nvarchar(max)" />
+          <Property Name="Project_ID" Type="int" Nullable="false" />
+          <Property Name="Created_at" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Updated_at" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Notifications">
+          <Key>
+            <PropertyRef Name="Notifications_ID" />
+          </Key>
+          <Property Name="Notifications_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Task_ID" Type="int" />
+          <Property Name="User_ID" Type="int" />
+          <Property Name="Timestamp" Type="datetime" />
+          <Property Name="Message" Type="nvarchar(max)" />
+          <Property Name="Created_at" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Updated_at" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="Project_ID" />
+          </Key>
+          <Property Name="Project_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="300" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Start_Date" Type="datetime2" Precision="7" />
+          <Property Name="End_Date" Type="datetime2" Precision="7" />
+          <Property Name="Deadline" Type="datetime2" Precision="7" />
+          <Property Name="Created_at" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Updated_at" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Report">
+          <Key>
+            <PropertyRef Name="Report_ID" />
+          </Key>
+          <Property Name="Report_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="300" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="User_ID" Type="int" />
+          <Property Name="Report_type" Type="nvarchar" MaxLength="255" />
+          <Property Name="Report_data" Type="nvarchar(max)" />
+          <Property Name="Department_ID" Type="int" />
+          <Property Name="Project_ID" Type="int" />
+          <Property Name="Created_at" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Updated_at" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SearchFilter">
+          <Key>
+            <PropertyRef Name="SearchFilter_ID" />
+          </Key>
+          <Property Name="SearchFilter_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Search_term" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Results" Type="nvarchar(max)" />
+          <Property Name="Filter_name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Filter_Criteria" Type="nvarchar(max)" />
+          <Property Name="Recommendation" Type="nvarchar(max)" />
+          <Property Name="User_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Settings">
+          <Key>
+            <PropertyRef Name="Settings_ID" />
+          </Key>
+          <Property Name="Settings_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_Preferences" Type="nvarchar(max)" />
+          <Property Name="Notification_Preferences" Type="nvarchar(max)" />
+          <Property Name="Accessibility" Type="nvarchar(max)" />
+          <Property Name="User_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="Task_ID" />
+          </Key>
+          <Property Name="Task_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="300" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Priority" Type="int" />
+          <Property Name="Status" Type="nvarchar" MaxLength="300" />
+          <Property Name="Assigned_to" Type="nvarchar" MaxLength="300" />
+          <Property Name="Created_at" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Updated_at" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Project_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Task Assignment">
+          <Key>
+            <PropertyRef Name="Task_Assignment_ID" />
+          </Key>
+          <Property Name="Task_Assignment_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Task_ID" Type="int" />
+          <Property Name="Team_Member_ID" Type="int" />
+          <Property Name="Assigned_at" Type="datetime2" Precision="7" />
+          <Property Name="Created_at" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Updated_at" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="User_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Task Members">
+          <Key>
+            <PropertyRef Name="Task_Members_ID" />
+          </Key>
+          <Property Name="Task_Members_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="300" />
+          <Property Name="Team_Member_ID" Type="int" />
+          <Property Name="Team_Member_Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Role" Type="nvarchar" MaxLength="300" />
+          <Property Name="Skills" Type="nvarchar(max)" />
+          <Property Name="Availability" Type="nvarchar" MaxLength="300" />
+          <Property Name="Created_at" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Updated_at" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="User_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="TimeTracker">
+          <Key>
+            <PropertyRef Name="TimeTracker_ID" />
+          </Key>
+          <Property Name="TimeTracker_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_ID" Type="int" />
+          <Property Name="Task_ID" Type="int" />
+          <Property Name="Start_time" Type="datetime2" Precision="7" />
+          <Property Name="End_time" Type="datetime2" Precision="7" />
+          <Property Name="Duration" Type="time" Precision="7" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="300" />
+          <Property Name="Email" Type="nvarchar" MaxLength="300" />
+          <Property Name="Password" Type="nvarchar" MaxLength="300" />
+          <Property Name="First_Name" Type="text" />
+          <Property Name="Last_Name" Type="text" />
+          <Property Name="Profile_Picture" Type="nvarchar(max)" />
+          <Property Name="Department_ID" Type="int" />
+        </EntityType>
+        <Association Name="FK_Checklist_Task">
+          <End Role="Task" Type="Self.Task" Multiplicity="0..1" />
+          <End Role="Checklist" Type="Self.Checklist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="Task_ID" />
+            </Principal>
+            <Dependent Role="Checklist">
+              <PropertyRef Name="Task_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_Task">
+          <End Role="Task" Type="Self.Task" Multiplicity="0..1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="Task_ID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="Task_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dashboard_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Dashboard" Type="Self.Dashboard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Dashboard">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Meeting_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+          <End Role="Meeting" Type="Self.Meeting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Project_ID" />
+            </Principal>
+            <Dependent Role="Meeting">
+              <PropertyRef Name="Project_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notifications_Task">
+          <End Role="Task" Type="Self.Task" Multiplicity="0..1" />
+          <End Role="Notifications" Type="Self.Notifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="Task_ID" />
+            </Principal>
+            <Dependent Role="Notifications">
+              <PropertyRef Name="Task_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notifications_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Notifications" Type="Self.Notifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Notifications">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Report_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="Report" Type="Self.Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="Department_ID" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="Department_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Report_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="Report" Type="Self.Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Project_ID" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="Project_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Report_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Report" Type="Self.Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SearchFilter_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="SearchFilter" Type="Self.SearchFilter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="SearchFilter">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Settings_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Settings" Type="Self.Settings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Settings">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="Task" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Project_ID" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="Project_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskAssignment_Task">
+          <End Role="Task" Type="Self.Task" Multiplicity="0..1" />
+          <End Role="Task Assignment" Type="Self.Task Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="Task_ID" />
+            </Principal>
+            <Dependent Role="Task Assignment">
+              <PropertyRef Name="Task_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskAssignment_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Task Assignment" Type="Self.Task Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Task Assignment">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskMembers_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Task Members" Type="Self.Task Members" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Task Members">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TimeTracker_Task">
+          <End Role="Task" Type="Self.Task" Multiplicity="0..1" />
+          <End Role="TimeTracker" Type="Self.TimeTracker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="Task_ID" />
+            </Principal>
+            <Dependent Role="TimeTracker">
+              <PropertyRef Name="Task_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TimeTracker_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="TimeTracker" Type="Self.TimeTracker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="TimeTracker">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="Department_ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Department_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="web_task_managerDBModelStoreContainer">
+          <EntitySet Name="Checklist" EntityType="Self.Checklist" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dashboard" EntityType="Self.Dashboard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Meeting" EntityType="Self.Meeting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notifications" EntityType="Self.Notifications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Report" EntityType="Self.Report" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SearchFilter" EntityType="Self.SearchFilter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Settings" EntityType="Self.Settings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Task" EntityType="Self.Task" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Task Assignment" EntityType="Self.Task Assignment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Task Members" EntityType="Self.Task Members" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TimeTracker" EntityType="Self.TimeTracker" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Checklist_Task" Association="Self.FK_Checklist_Task">
+            <End Role="Task" EntitySet="Task" />
+            <End Role="Checklist" EntitySet="Checklist" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Task" Association="Self.FK_Comments_Task">
+            <End Role="Task" EntitySet="Task" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_User" Association="Self.FK_Comments_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dashboard_User" Association="Self.FK_Dashboard_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Dashboard" EntitySet="Dashboard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Meeting_Project" Association="Self.FK_Meeting_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="Meeting" EntitySet="Meeting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notifications_Task" Association="Self.FK_Notifications_Task">
+            <End Role="Task" EntitySet="Task" />
+            <End Role="Notifications" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notifications_User" Association="Self.FK_Notifications_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Notifications" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Report_Department" Association="Self.FK_Report_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Report" EntitySet="Report" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Report_Project" Association="Self.FK_Report_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="Report" EntitySet="Report" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Report_User" Association="Self.FK_Report_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Report" EntitySet="Report" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SearchFilter_User" Association="Self.FK_SearchFilter_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="SearchFilter" EntitySet="SearchFilter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Settings_User" Association="Self.FK_Settings_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Settings" EntitySet="Settings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_Project" Association="Self.FK_Task_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="Task" EntitySet="Task" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskAssignment_Task" Association="Self.FK_TaskAssignment_Task">
+            <End Role="Task" EntitySet="Task" />
+            <End Role="Task Assignment" EntitySet="Task Assignment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskAssignment_User" Association="Self.FK_TaskAssignment_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Task Assignment" EntitySet="Task Assignment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskMembers_User" Association="Self.FK_TaskMembers_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Task Members" EntitySet="Task Members" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TimeTracker_Task" Association="Self.FK_TimeTracker_Task">
+            <End Role="Task" EntitySet="Task" />
+            <End Role="TimeTracker" EntitySet="TimeTracker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TimeTracker_User" Association="Self.FK_TimeTracker_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="TimeTracker" EntitySet="TimeTracker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Department" Association="Self.FK_User_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="web_task_managerDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Checklist">
+          <Key>
+            <PropertyRef Name="Checklist_ID" />
+          </Key>
+          <Property Name="Checklist_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Item_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Item_priority" Type="Int32" />
+          <Property Name="Item_status" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Deadline" Type="DateTime" Precision="0" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Created_at" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Updated_at" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Task_ID" Type="Int32" />
+          <NavigationProperty Name="Task" Relationship="Self.FK_Checklist_Task" FromRole="Checklist" ToRole="Task" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="Comments_ID" />
+          </Key>
+          <Property Name="Comments_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Task_ID" Type="Int32" />
+          <Property Name="User_ID" Type="Int32" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Created_at" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Updated_at" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Task" Relationship="Self.FK_Comments_Task" FromRole="Comments" ToRole="Task" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Comments_User" FromRole="Comments" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Dashboard">
+          <Key>
+            <PropertyRef Name="Dashboard_ID" />
+          </Key>
+          <Property Name="Dashboard_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Task_summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Team_summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="User_summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Progress_status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Project_summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="User_ID" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Dashboard_User" FromRole="Dashboard" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="Department_ID" />
+          </Key>
+          <Property Name="Department_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Members" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Projects" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Clients" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Performance" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Reports" Relationship="Self.FK_Report_Department" FromRole="Department" ToRole="Report" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_User_Department" FromRole="Department" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Meeting">
+          <Key>
+            <PropertyRef Name="Meeting_ID" />
+          </Key>
+          <Property Name="Meeting_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Start_Time" Type="DateTime" Precision="3" />
+          <Property Name="End_Time" Type="DateTime" Precision="3" />
+          <Property Name="Users" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Project_ID" Type="Int32" Nullable="false" />
+          <Property Name="Created_at" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Updated_at" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Project" Relationship="Self.FK_Meeting_Project" FromRole="Meeting" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="Notifications_ID" />
+          </Key>
+          <Property Name="Notifications_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Task_ID" Type="Int32" />
+          <Property Name="User_ID" Type="Int32" />
+          <Property Name="Timestamp" Type="DateTime" Precision="3" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Created_at" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Updated_at" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Task" Relationship="Self.FK_Notifications_Task" FromRole="Notifications" ToRole="Task" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Notifications_User" FromRole="Notifications" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="Project_ID" />
+          </Key>
+          <Property Name="Project_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Start_Date" Type="DateTime" Precision="7" />
+          <Property Name="End_Date" Type="DateTime" Precision="7" />
+          <Property Name="Deadline" Type="DateTime" Precision="7" />
+          <Property Name="Created_at" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Updated_at" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Meetings" Relationship="Self.FK_Meeting_Project" FromRole="Project" ToRole="Meeting" />
+          <NavigationProperty Name="Reports" Relationship="Self.FK_Report_Project" FromRole="Project" ToRole="Report" />
+          <NavigationProperty Name="Tasks" Relationship="Self.FK_Task_Project" FromRole="Project" ToRole="Task" />
+        </EntityType>
+        <EntityType Name="Report">
+          <Key>
+            <PropertyRef Name="Report_ID" />
+          </Key>
+          <Property Name="Report_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="User_ID" Type="Int32" />
+          <Property Name="Report_type" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Report_data" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Department_ID" Type="Int32" />
+          <Property Name="Project_ID" Type="Int32" />
+          <Property Name="Created_at" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Updated_at" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Department" Relationship="Self.FK_Report_Department" FromRole="Report" ToRole="Department" />
+          <NavigationProperty Name="Project" Relationship="Self.FK_Report_Project" FromRole="Report" ToRole="Project" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Report_User" FromRole="Report" ToRole="User" />
+        </EntityType>
+        <EntityType Name="SearchFilter">
+          <Key>
+            <PropertyRef Name="SearchFilter_ID" />
+          </Key>
+          <Property Name="SearchFilter_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Search_term" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Results" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Filter_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Filter_Criteria" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Recommendation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="User_ID" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="Self.FK_SearchFilter_User" FromRole="SearchFilter" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Setting">
+          <Key>
+            <PropertyRef Name="Settings_ID" />
+          </Key>
+          <Property Name="Settings_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_Preferences" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Notification_Preferences" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Accessibility" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="User_ID" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Settings_User" FromRole="Settings" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="Task_ID" />
+          </Key>
+          <Property Name="Task_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Priority" Type="Int32" />
+          <Property Name="Status" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Assigned_to" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Created_at" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Updated_at" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Project_ID" Type="Int32" />
+          <NavigationProperty Name="Checklists" Relationship="Self.FK_Checklist_Task" FromRole="Task" ToRole="Checklist" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_Task" FromRole="Task" ToRole="Comments" />
+          <NavigationProperty Name="Notifications" Relationship="Self.FK_Notifications_Task" FromRole="Task" ToRole="Notifications" />
+          <NavigationProperty Name="Project" Relationship="Self.FK_Task_Project" FromRole="Task" ToRole="Project" />
+          <NavigationProperty Name="Task_Assignment" Relationship="Self.FK_TaskAssignment_Task" FromRole="Task" ToRole="Task_Assignment" />
+          <NavigationProperty Name="TimeTrackers" Relationship="Self.FK_TimeTracker_Task" FromRole="Task" ToRole="TimeTracker" />
+        </EntityType>
+        <EntityType Name="Task_Assignment">
+          <Key>
+            <PropertyRef Name="Task_Assignment_ID" />
+          </Key>
+          <Property Name="Task_Assignment_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Task_ID" Type="Int32" />
+          <Property Name="Team_Member_ID" Type="Int32" />
+          <Property Name="Assigned_at" Type="DateTime" Precision="7" />
+          <Property Name="Created_at" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Updated_at" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="User_ID" Type="Int32" />
+          <NavigationProperty Name="Task" Relationship="Self.FK_TaskAssignment_Task" FromRole="Task_Assignment" ToRole="Task" />
+          <NavigationProperty Name="User" Relationship="Self.FK_TaskAssignment_User" FromRole="Task_Assignment" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Task_Member">
+          <Key>
+            <PropertyRef Name="Task_Members_ID" />
+          </Key>
+          <Property Name="Task_Members_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Team_Member_ID" Type="Int32" />
+          <Property Name="Team_Member_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Skills" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Availability" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Created_at" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Updated_at" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="User_ID" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="Self.FK_TaskMembers_User" FromRole="Task_Members" ToRole="User" />
+        </EntityType>
+        <EntityType Name="TimeTracker">
+          <Key>
+            <PropertyRef Name="TimeTracker_ID" />
+          </Key>
+          <Property Name="TimeTracker_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_ID" Type="Int32" />
+          <Property Name="Task_ID" Type="Int32" />
+          <Property Name="Start_time" Type="DateTime" Precision="7" />
+          <Property Name="End_time" Type="DateTime" Precision="7" />
+          <Property Name="Duration" Type="Time" Precision="7" />
+          <NavigationProperty Name="Task" Relationship="Self.FK_TimeTracker_Task" FromRole="TimeTracker" ToRole="Task" />
+          <NavigationProperty Name="User" Relationship="Self.FK_TimeTracker_User" FromRole="TimeTracker" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="First_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Last_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Profile_Picture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Department_ID" Type="Int32" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_User" FromRole="User" ToRole="Comments" />
+          <NavigationProperty Name="Dashboards" Relationship="Self.FK_Dashboard_User" FromRole="User" ToRole="Dashboard" />
+          <NavigationProperty Name="Department" Relationship="Self.FK_User_Department" FromRole="User" ToRole="Department" />
+          <NavigationProperty Name="Notifications" Relationship="Self.FK_Notifications_User" FromRole="User" ToRole="Notifications" />
+          <NavigationProperty Name="Reports" Relationship="Self.FK_Report_User" FromRole="User" ToRole="Report" />
+          <NavigationProperty Name="SearchFilters" Relationship="Self.FK_SearchFilter_User" FromRole="User" ToRole="SearchFilter" />
+          <NavigationProperty Name="Settings" Relationship="Self.FK_Settings_User" FromRole="User" ToRole="Settings" />
+          <NavigationProperty Name="Task_Assignment" Relationship="Self.FK_TaskAssignment_User" FromRole="User" ToRole="Task_Assignment" />
+          <NavigationProperty Name="Task_Members" Relationship="Self.FK_TaskMembers_User" FromRole="User" ToRole="Task_Members" />
+          <NavigationProperty Name="TimeTrackers" Relationship="Self.FK_TimeTracker_User" FromRole="User" ToRole="TimeTracker" />
+        </EntityType>
+        <Association Name="FK_Checklist_Task">
+          <End Role="Task" Type="Self.Task" Multiplicity="0..1" />
+          <End Role="Checklist" Type="Self.Checklist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="Task_ID" />
+            </Principal>
+            <Dependent Role="Checklist">
+              <PropertyRef Name="Task_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_Task">
+          <End Role="Task" Type="Self.Task" Multiplicity="0..1" />
+          <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="Task_ID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="Task_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dashboard_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Dashboard" Type="Self.Dashboard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Dashboard">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Report_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="Report" Type="Self.Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="Department_ID" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="Department_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="Department_ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Department_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Meeting_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+          <End Role="Meeting" Type="Self.Meeting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Project_ID" />
+            </Principal>
+            <Dependent Role="Meeting">
+              <PropertyRef Name="Project_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notifications_Task">
+          <End Role="Task" Type="Self.Task" Multiplicity="0..1" />
+          <End Role="Notifications" Type="Self.Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="Task_ID" />
+            </Principal>
+            <Dependent Role="Notifications">
+              <PropertyRef Name="Task_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notifications_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Notifications" Type="Self.Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Notifications">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Report_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="Report" Type="Self.Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Project_ID" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="Project_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="Task" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Project_ID" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="Project_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Report_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Report" Type="Self.Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SearchFilter_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="SearchFilter" Type="Self.SearchFilter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="SearchFilter">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Settings_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Settings" Type="Self.Setting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Settings">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskAssignment_Task">
+          <End Role="Task" Type="Self.Task" Multiplicity="0..1" />
+          <End Role="Task_Assignment" Type="Self.Task_Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="Task_ID" />
+            </Principal>
+            <Dependent Role="Task_Assignment">
+              <PropertyRef Name="Task_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TimeTracker_Task">
+          <End Role="Task" Type="Self.Task" Multiplicity="0..1" />
+          <End Role="TimeTracker" Type="Self.TimeTracker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="Task_ID" />
+            </Principal>
+            <Dependent Role="TimeTracker">
+              <PropertyRef Name="Task_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskAssignment_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Task_Assignment" Type="Self.Task_Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Task_Assignment">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskMembers_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Task_Members" Type="Self.Task_Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Task_Members">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TimeTracker_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="TimeTracker" Type="Self.TimeTracker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="TimeTracker">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="web_task_managerDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Checklists" EntityType="Self.Checklist" />
+          <EntitySet Name="Comments" EntityType="Self.Comment" />
+          <EntitySet Name="Dashboards" EntityType="Self.Dashboard" />
+          <EntitySet Name="Departments" EntityType="Self.Department" />
+          <EntitySet Name="Meetings" EntityType="Self.Meeting" />
+          <EntitySet Name="Notifications" EntityType="Self.Notification" />
+          <EntitySet Name="Projects" EntityType="Self.Project" />
+          <EntitySet Name="Reports" EntityType="Self.Report" />
+          <EntitySet Name="SearchFilters" EntityType="Self.SearchFilter" />
+          <EntitySet Name="Settings" EntityType="Self.Setting" />
+          <EntitySet Name="Tasks" EntityType="Self.Task" />
+          <EntitySet Name="Task_Assignments" EntityType="Self.Task_Assignment" />
+          <EntitySet Name="Task_Members" EntityType="Self.Task_Member" />
+          <EntitySet Name="TimeTrackers" EntityType="Self.TimeTracker" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Checklist_Task" Association="Self.FK_Checklist_Task">
+            <End Role="Task" EntitySet="Tasks" />
+            <End Role="Checklist" EntitySet="Checklists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Task" Association="Self.FK_Comments_Task">
+            <End Role="Task" EntitySet="Tasks" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_User" Association="Self.FK_Comments_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dashboard_User" Association="Self.FK_Dashboard_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Dashboard" EntitySet="Dashboards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Report_Department" Association="Self.FK_Report_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Report" EntitySet="Reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Department" Association="Self.FK_User_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Meeting_Project" Association="Self.FK_Meeting_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="Meeting" EntitySet="Meetings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notifications_Task" Association="Self.FK_Notifications_Task">
+            <End Role="Task" EntitySet="Tasks" />
+            <End Role="Notifications" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notifications_User" Association="Self.FK_Notifications_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Notifications" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Report_Project" Association="Self.FK_Report_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="Report" EntitySet="Reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_Project" Association="Self.FK_Task_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="Task" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Report_User" Association="Self.FK_Report_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Report" EntitySet="Reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SearchFilter_User" Association="Self.FK_SearchFilter_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="SearchFilter" EntitySet="SearchFilters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Settings_User" Association="Self.FK_Settings_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Settings" EntitySet="Settings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskAssignment_Task" Association="Self.FK_TaskAssignment_Task">
+            <End Role="Task" EntitySet="Tasks" />
+            <End Role="Task_Assignment" EntitySet="Task_Assignments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TimeTracker_Task" Association="Self.FK_TimeTracker_Task">
+            <End Role="Task" EntitySet="Tasks" />
+            <End Role="TimeTracker" EntitySet="TimeTrackers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskAssignment_User" Association="Self.FK_TaskAssignment_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Task_Assignment" EntitySet="Task_Assignments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskMembers_User" Association="Self.FK_TaskMembers_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Task_Members" EntitySet="Task_Members" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TimeTracker_User" Association="Self.FK_TimeTracker_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="TimeTracker" EntitySet="TimeTrackers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="web_task_managerDBModelStoreContainer" CdmEntityContainer="web_task_managerDBEntities">
+          <EntitySetMapping Name="Checklists">
+            <EntityTypeMapping TypeName="web_task_managerDBModel.Checklist">
+              <MappingFragment StoreEntitySet="Checklist">
+                <ScalarProperty Name="Checklist_ID" ColumnName="Checklist_ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Item_name" ColumnName="Item_name" />
+                <ScalarProperty Name="Item_priority" ColumnName="Item_priority" />
+                <ScalarProperty Name="Item_status" ColumnName="Item_status" />
+                <ScalarProperty Name="Deadline" ColumnName="Deadline" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+                <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+                <ScalarProperty Name="Task_ID" ColumnName="Task_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="web_task_managerDBModel.Comment">
+              <MappingFragment StoreEntitySet="Comments">
+                <ScalarProperty Name="Comments_ID" ColumnName="Comments_ID" />
+                <ScalarProperty Name="Task_ID" ColumnName="Task_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+                <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dashboards">
+            <EntityTypeMapping TypeName="web_task_managerDBModel.Dashboard">
+              <MappingFragment StoreEntitySet="Dashboard">
+                <ScalarProperty Name="Dashboard_ID" ColumnName="Dashboard_ID" />
+                <ScalarProperty Name="Task_summary" ColumnName="Task_summary" />
+                <ScalarProperty Name="Team_summary" ColumnName="Team_summary" />
+                <ScalarProperty Name="User_summary" ColumnName="User_summary" />
+                <ScalarProperty Name="Progress_status" ColumnName="Progress_status" />
+                <ScalarProperty Name="Project_summary" ColumnName="Project_summary" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="web_task_managerDBModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="Department_ID" ColumnName="Department_ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Members" ColumnName="Members" />
+                <ScalarProperty Name="Projects" ColumnName="Projects" />
+                <ScalarProperty Name="Clients" ColumnName="Clients" />
+                <ScalarProperty Name="Performance" ColumnName="Performance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Meetings">
+            <EntityTypeMapping TypeName="web_task_managerDBModel.Meeting">
+              <MappingFragment StoreEntitySet="Meeting">
+                <ScalarProperty Name="Meeting_ID" ColumnName="Meeting_ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Start_Time" ColumnName="Start_Time" />
+                <ScalarProperty Name="End_Time" ColumnName="End_Time" />
+                <ScalarProperty Name="Users" ColumnName="Users" />
+                <ScalarProperty Name="Project_ID" ColumnName="Project_ID" />
+                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+                <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notifications">
+            <EntityTypeMapping TypeName="web_task_managerDBModel.Notification">
+              <MappingFragment StoreEntitySet="Notifications">
+                <ScalarProperty Name="Notifications_ID" ColumnName="Notifications_ID" />
+                <ScalarProperty Name="Task_ID" ColumnName="Task_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+                <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="web_task_managerDBModel.Project">
+              <MappingFragment StoreEntitySet="Project">
+                <ScalarProperty Name="Project_ID" ColumnName="Project_ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Start_Date" ColumnName="Start_Date" />
+                <ScalarProperty Name="End_Date" ColumnName="End_Date" />
+                <ScalarProperty Name="Deadline" ColumnName="Deadline" />
+                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+                <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reports">
+            <EntityTypeMapping TypeName="web_task_managerDBModel.Report">
+              <MappingFragment StoreEntitySet="Report">
+                <ScalarProperty Name="Report_ID" ColumnName="Report_ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Report_type" ColumnName="Report_type" />
+                <ScalarProperty Name="Report_data" ColumnName="Report_data" />
+                <ScalarProperty Name="Department_ID" ColumnName="Department_ID" />
+                <ScalarProperty Name="Project_ID" ColumnName="Project_ID" />
+                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+                <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SearchFilters">
+            <EntityTypeMapping TypeName="web_task_managerDBModel.SearchFilter">
+              <MappingFragment StoreEntitySet="SearchFilter">
+                <ScalarProperty Name="SearchFilter_ID" ColumnName="SearchFilter_ID" />
+                <ScalarProperty Name="Search_term" ColumnName="Search_term" />
+                <ScalarProperty Name="Results" ColumnName="Results" />
+                <ScalarProperty Name="Filter_name" ColumnName="Filter_name" />
+                <ScalarProperty Name="Filter_Criteria" ColumnName="Filter_Criteria" />
+                <ScalarProperty Name="Recommendation" ColumnName="Recommendation" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Settings">
+            <EntityTypeMapping TypeName="web_task_managerDBModel.Setting">
+              <MappingFragment StoreEntitySet="Settings">
+                <ScalarProperty Name="Settings_ID" ColumnName="Settings_ID" />
+                <ScalarProperty Name="User_Preferences" ColumnName="User_Preferences" />
+                <ScalarProperty Name="Notification_Preferences" ColumnName="Notification_Preferences" />
+                <ScalarProperty Name="Accessibility" ColumnName="Accessibility" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tasks">
+            <EntityTypeMapping TypeName="web_task_managerDBModel.Task">
+              <MappingFragment StoreEntitySet="Task">
+                <ScalarProperty Name="Task_ID" ColumnName="Task_ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Assigned_to" ColumnName="Assigned_to" />
+                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+                <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+                <ScalarProperty Name="Project_ID" ColumnName="Project_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Task_Assignments">
+            <EntityTypeMapping TypeName="web_task_managerDBModel.Task_Assignment">
+              <MappingFragment StoreEntitySet="Task Assignment">
+                <ScalarProperty Name="Task_Assignment_ID" ColumnName="Task_Assignment_ID" />
+                <ScalarProperty Name="Task_ID" ColumnName="Task_ID" />
+                <ScalarProperty Name="Team_Member_ID" ColumnName="Team_Member_ID" />
+                <ScalarProperty Name="Assigned_at" ColumnName="Assigned_at" />
+                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+                <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Task_Members">
+            <EntityTypeMapping TypeName="web_task_managerDBModel.Task_Member">
+              <MappingFragment StoreEntitySet="Task Members">
+                <ScalarProperty Name="Task_Members_ID" ColumnName="Task_Members_ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Team_Member_ID" ColumnName="Team_Member_ID" />
+                <ScalarProperty Name="Team_Member_Name" ColumnName="Team_Member_Name" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Skills" ColumnName="Skills" />
+                <ScalarProperty Name="Availability" ColumnName="Availability" />
+                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+                <ScalarProperty Name="Updated_at" ColumnName="Updated_at" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TimeTrackers">
+            <EntityTypeMapping TypeName="web_task_managerDBModel.TimeTracker">
+              <MappingFragment StoreEntitySet="TimeTracker">
+                <ScalarProperty Name="TimeTracker_ID" ColumnName="TimeTracker_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Task_ID" ColumnName="Task_ID" />
+                <ScalarProperty Name="Start_time" ColumnName="Start_time" />
+                <ScalarProperty Name="End_time" ColumnName="End_time" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="web_task_managerDBModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="Profile_Picture" ColumnName="Profile_Picture" />
+                <ScalarProperty Name="Department_ID" ColumnName="Department_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
