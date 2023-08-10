@@ -1,3 +1,5 @@
 # Web-Based-Task-Manager
 
-## In Progress📈... Will be Uploaded Soon🙂
+## Advanced Programming semester project implemented in C#, ASP.MVC, ADO.NET, Entitiy Framework.
+
+Full Description will be uploaded soon
